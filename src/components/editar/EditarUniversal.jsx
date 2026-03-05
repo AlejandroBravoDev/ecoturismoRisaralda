@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import axios from "axios";
+import api from "../../services/api";
 import "../panelAdmin/tailwind.css";
 import Swal from "sweetalert2";
 import { useDropzone } from "react-dropzone";
@@ -15,9 +15,9 @@ function Editar() {
   const [coordenadas, setCoordenadas] = useState("");
   const endpoints = useMemo(
     () => ({
-      lugares: `http://localhost:8000/api/lugares/${id}`,
-      hospedajes: `http://localhost:8000/api/hospedajes/${id}`,
-      usuario: `http://localhost:8000/api/usuario/${id}`,
+      lugares: `/api/lugares/${id}`,
+      hospedajes: `/api/hospedajes/${id}`,
+      usuario: `/api/usuario/${id}`,
     }),
     [id],
   );
@@ -27,7 +27,7 @@ function Editar() {
   const fetchData = useCallback(async () => {
     if (!endpoint) return;
     try {
-      const { data } = await axios.get(endpoint);
+      const { data } = await api.get(endpoint);
       setNombre(data.nombre || "");
       setDescripcion(data.descripcion || "");
       setImagenesExistentes(data.todas_las_imagenes || []);
@@ -110,9 +110,8 @@ function Editar() {
       );
       formData.append("_method", "PUT");
 
-      await axios.post(endpoint, formData, {
+      await api.post(endpoint, formData, {
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       });

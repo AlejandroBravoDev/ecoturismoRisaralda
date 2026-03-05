@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../services/api";
 import styles from "./Registro.module.css";
 import img1 from "../../assets/img1.jpg";
 import img2 from "../../assets/img2.jpg";
@@ -94,7 +94,7 @@ function Registro() {
     }
 
     try {
-      const res = await axios.post("/api/register", formData);
+      const res = await api.post("/api/register", formData);
 
       const token = res.data.token;
       const usuario = res.data.usuario;

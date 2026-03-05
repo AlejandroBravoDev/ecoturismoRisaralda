@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import api from "../../services/api";
 import {
   HelpCircle,
   Phone,
@@ -14,7 +14,7 @@ import {
 import logo from "../../assets/logo.png";
 import usuarioDemo from "../../assets/usuarioDemo.png";
 
-const LARAVEL_BASE_URL = "http://localhost:8000";
+
 
 function Header() {
   const navigate = useNavigate();
@@ -52,9 +52,7 @@ function Header() {
       }
 
       try {
-        const res = await axios.get(`${LARAVEL_BASE_URL}/api/perfil`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await api.get("/api/perfil");
 
         const userData = res.data.usuario;
         setUser(userData);

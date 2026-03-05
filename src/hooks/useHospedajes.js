@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../services/api";
 import Swal from "sweetalert2";
-
-const API_URL = "http://localhost:8000/api";
 
 function useHospedajes() {
   const [hospedajes, setHospedajes] = useState([]);
@@ -18,7 +16,7 @@ function useHospedajes() {
   useEffect(() => {
     const fetchMunicipios = async () => {
       try {
-        const response = await axios.get(`${API_URL}/municipios`);
+        const response = await api.get("/api/municipios");
         if (response.data.success) {
           setMunicipios(response.data.data);
         }
@@ -46,7 +44,7 @@ function useHospedajes() {
           params.append("municipio_id", selectedMunicipioId);
         }
 
-        const response = await axios.get(`${API_URL}/hospedajes?${params}`);
+        const response = await api.get(`/api/hospedajes?${params}`);
         setHospedajes(response.data);
         setLoading(false);
       } catch (err) {
@@ -70,9 +68,7 @@ function useHospedajes() {
     }
 
     try {
-      await axios.delete(`${API_URL}/hospedajes/${hospedajeAEliminar}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await api.delete(`/api/hospedajes/${hospedajeAEliminar}`);
 
       setHospedajes(hospedajes.filter((h) => h.id !== hospedajeAEliminar));
       setShowModal(false);

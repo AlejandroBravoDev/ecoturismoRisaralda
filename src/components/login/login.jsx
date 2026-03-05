@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../services/api";
 import styles from "./Login.module.css";
 import { useNavigate, Link } from "react-router-dom";
 import img1 from "../../assets/img1.jpg";
@@ -30,7 +30,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/api/login", formData);
+      const res = await api.post("/api/login", formData);
       const token = res.data.token; // Corregido de access_token a token
       const usuario = res.data.usuario; // Obtener el objeto usuario
       localStorage.setItem("token", token);
