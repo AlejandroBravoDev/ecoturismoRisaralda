@@ -1,19 +1,19 @@
 <?php
 
-use Illuminate\Https\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Usuario;
 
-use App\Https\Controllers\AuthController;
-use App\Https\Controllers\HospedajeController;
-use App\Https\Controllers\LugaresController;
-use App\Https\Controllers\MunicipioController;
-use App\Https\Controllers\UsuarioController;
-use App\Https\Controllers\favoritosController;
-use App\Https\Controllers\ComentariosController;
-use App\Https\Controllers\PerfilController;
-use App\Https\Controllers\PasswordResetController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HospedajeController;
+use App\Http\Controllers\LugaresController;
+use App\Http\Controllers\MunicipioController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\favoritosController;
+use App\Http\Controllers\ComentariosController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\PasswordResetController;
 
 /* =======================
    APIS PÚBLICAS
