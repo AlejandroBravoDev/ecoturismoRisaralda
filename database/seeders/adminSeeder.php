@@ -13,7 +13,7 @@ class AdminSeeder extends Seeder
         DB::table('usuarios')->insert([
             [
                 'id'             => 12,
-                'nombre_completo' => 'admin',
+                'nombre_completo' => 'admin1',
                 'email'          => 'admin@gmail.com',
                 'password'       => Hash::make('admin123'),
                 'rol'            => 'admin',
