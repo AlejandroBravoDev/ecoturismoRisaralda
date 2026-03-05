@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Comentarios;
-use App\Models\Municipios;
+use App\Models\municipios;
 use App\Models\Usuario;
 
 class Lugares extends Model

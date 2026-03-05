@@ -15,9 +15,6 @@ use App\Http\Controllers\ComentariosController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PasswordResetController;
 
-/* =======================
-   APIS PÚBLICAS
-======================= */
 
 Route::get('/lugares', [LugaresController::class, 'index']);
 Route::get('/lugares/{id}', [LugaresController::class, 'show']);
