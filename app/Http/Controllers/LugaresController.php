@@ -62,6 +62,7 @@ class LugaresController extends Controller
 
         return response()->json($lugaresData, 200);
     } catch (\Exception $e) {
+        Log::error('Error en LugaresController@index: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
         return response()->json(['message' => 'Error en el servidor'], 500);
     }
 }
