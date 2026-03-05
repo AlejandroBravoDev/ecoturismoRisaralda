@@ -1,23 +1,16 @@
 <?php
 
-  use Illuminate\Database\Migrations\Migration;
-  use Illuminate\Database\Schema\Blueprint;
-  use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Migrations\Migration;
 
-  class AddMissingFieldsToComentariosTable extends Migration
-  {
-      public function up()
-      {
-          Schema::table('comentarios', function (Blueprint $table) {
-              $table->string('image_path')->after('rating')->nullable();
-              $table->string('category')->after('image_path')->nullable();
-          });
-      }
+class AddMissingFieldsToComentariosTable extends Migration
+{
+    public function up()
+    {
+        // Fields already included in create_comentarios_table migration
+    }
 
-      public function down()
-      {
-          Schema::table('comentarios', function (Blueprint $table) {
-              $table->dropColumn(['image_path', 'category']);
-          });
-      }
-  }
+    public function down()
+    {
+        // Nothing to revert
+    }
+}
