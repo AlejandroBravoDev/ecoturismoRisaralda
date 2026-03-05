@@ -3,7 +3,7 @@
 return [
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
     'allowed_methods' => ['*'],
-    'allowed_origins' => explode(',', env('FRONTEND_URLS', 'https://ecoturismorisaralda.alejandrobravo.xyz, https://localhost:5173')),
+    'allowed_origins' => array_map('trim', explode(',', env('FRONTEND_URLS', 'https://ecoturismorisaralda.alejandrobravo.xyz,https://localhost:5173'))),
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],
