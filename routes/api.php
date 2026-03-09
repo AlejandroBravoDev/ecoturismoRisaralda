@@ -11,7 +11,7 @@ use App\Http\Controllers\LugaresController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\favoritosController;
-use App\Http\Controllers\ComentariosController;
+use App\Http\Controllers\comentariosController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PasswordResetController;
 
@@ -22,7 +22,7 @@ Route::get('/hospedajes', [HospedajeController::class, 'index']);
 Route::get('/hospedajes/{id}', [HospedajeController::class, 'show']);
 Route::get('/municipios', [MunicipioController::class, 'index']);
 Route::get('/favoritos', [favoritosController::class, 'index']);
-Route::get('/comentarios', [ComentariosController::class, 'index']);
+Route::get('/comentarios', [comentariosController::class, 'index']);
 
 // Usuarios (sin auth para pruebas)
 Route::get('/usuarios', [UsuarioController::class, 'index']);
