@@ -89,10 +89,17 @@ class favoritosController extends Controller
     public function check($id)
     {
         try {
-            $isFavorite = Favorito::where('usuario_id', Auth::id())
+            $userId = Auth::id();
+            \Log::info('Check favorito - User ID: ' . $userId . ', ID: ' . $id);
+            
+            if (!$userId) {
+                return response()->json(['message' => 'Not authenticated'], 401);
+            }
+            
+            $isFavorite = Favorito::where('usuario_id', $userId)
                 ->where(function($query) use ($id) {
                     $query->where('lugar_id', $id)
-                          ->orWhere('hospedaje_id', $id);
+                        ->orWhere('hospedaje_id', $id);
                 })
                 ->exists();
                 
