@@ -25,7 +25,7 @@ const EditarUsuario = () => {
     const [newBanner, setNewBanner] = useState(null);
     const [previewBanner, setPreviewBanner] = useState(null); 
 
-    const API_URL = import.meta.env.VITE_API_URL + "/api";
+    const API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         fetchUser();

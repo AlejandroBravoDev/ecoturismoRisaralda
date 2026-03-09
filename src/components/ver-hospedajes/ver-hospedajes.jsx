@@ -124,7 +124,7 @@ function VerHospedaje() {
 
   const fetchCurrentUser = useCallback(async (token) => {
     try {
-      const res = await axios.get(`${API}/api/user`, {
+      const res = await axios.get(`${API}/user`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCurrentUser({
@@ -142,7 +142,7 @@ function VerHospedaje() {
     const token = localStorage.getItem("token");
     setLoading(true);
     try {
-      const res = await axios.get(`${API}/api/hospedajes/${id}`, {
+      const res = await axios.get(`${API}/hospedajes/${id}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       setHospedaje(res.data);
@@ -163,7 +163,7 @@ function VerHospedaje() {
     const token = localStorage.getItem("token");
     if (token) {
       try {
-        const response = await axios.get(`${API}/api/favoritos/check/${id}`, {
+        const response = await axios.get(`${API}/favoritos/check/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setIsFavorite(response.data.isFavorite);
@@ -202,7 +202,7 @@ function VerHospedaje() {
         formData.append("image", selectedImage);
       }
 
-      const response = await axios.post(`${API}/api/comentarios`, formData, {
+      const response = await axios.post(`${API}/comentarios`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -235,13 +235,13 @@ function VerHospedaje() {
     }
     try {
       if (isFavorite) {
-        await axios.delete(`${API}/api/favoritos/${id}`, {
+        await axios.delete(`${API}/favoritos/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setIsFavorite(false);
       } else {
         await axios.post(
-          `${API}/api/favoritos`,
+          `${API}/favoritos`,
           { hospedaje_id: id },
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -259,7 +259,7 @@ function VerHospedaje() {
       const token = localStorage.getItem("token");
       if (!token) return navigate("/login");
       try {
-        await axios.delete(`${API}/api/comentarios/${commentId}`, {
+        await axios.delete(`${API}/comentarios/${commentId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setOpinions((prev) => prev.filter((op) => op.id !== commentId));
@@ -278,7 +278,7 @@ function VerHospedaje() {
       if (!token) return navigate("/login");
       try {
         await axios.post(
-          `${API}/api/comentarios/${commentId}/report`,
+          `${API}/comentarios/${commentId}/report`,
           {},
           {
             headers: { Authorization: `Bearer ${token}` },

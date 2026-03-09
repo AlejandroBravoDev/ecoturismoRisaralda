@@ -39,7 +39,7 @@ function PerfilUsuario() {
       return;
     }
     try {
-      const res = await axios.get(`${API_BASE}/api/perfil`, {
+      const res = await axios.get(`${API}/perfil`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -103,7 +103,7 @@ function PerfilUsuario() {
         data.append("bannerFile", formData.bannerFile);
       }
 
-      const res = await axios.post(`${API_BASE}/api/perfil/update`, data, {
+      const res = await axios.post(`${API}/perfil/update`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -148,7 +148,7 @@ function PerfilUsuario() {
 
     if (token) {
       try {
-        await axios.post(`${API_BASE}/api/logout`, null, {
+        await axios.post(`${API}/logout`, null, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -179,7 +179,7 @@ function PerfilUsuario() {
     }
 
     try {
-      await axios.delete(`${API_BASE}/api/comentarios/${comentarioId}`, {
+      await axios.delete(`${API}/comentarios/${comentarioId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -209,7 +209,7 @@ function PerfilUsuario() {
     }
 
     try {
-      await axios.delete(`${API_BASE}/api/favoritos/${lugarId}`, {
+      await axios.delete(`${API_BASE}/afavoritos/${lugarId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

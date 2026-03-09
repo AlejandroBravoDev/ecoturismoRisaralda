@@ -119,7 +119,7 @@ function VerLugares() {
 
   const fetchCurrentUser = async (token) => {
     try {
-      const res = await axios.get(`${API}/api/user`, {
+      const res = await axios.get(`${API}/user`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCurrentUser({
@@ -136,7 +136,7 @@ function VerLugares() {
   const fetchLugar = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await axios.get(`${API}/api/lugares/${id}`, {
+      const res = await axios.get(`${API}/lugares/${id}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
 
@@ -158,7 +158,7 @@ function VerLugares() {
     const token = localStorage.getItem("token");
     if (token) {
       try {
-        const response = await axios.get(`${API}/api/favoritos/check/${id}`, {
+        const response = await axios.get(`${API}/favoritos/check/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setIsFavorite(response.data.isFavorite);
@@ -207,7 +207,7 @@ function VerLugares() {
       formData.append("category", selectedCategory);
       if (selectedImage) formData.append("image", selectedImage);
 
-      const response = await axios.post(`${API}/api/comentarios`, formData, {
+      const response = await axios.post(`${API}/comentarios`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -237,13 +237,13 @@ function VerLugares() {
     }
     try {
       if (isFavorite) {
-        await axios.delete(`${API}/api/favoritos/${id}`, {
+        await axios.delete(`${API}/favoritos/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setIsFavorite(false);
       } else {
         await axios.post(
-          `${API}/api/favoritos`,
+          `${API}/favoritos`,
           { lugar_id: id },
           { headers: { Authorization: `Bearer ${token}` } },
         );
@@ -261,7 +261,7 @@ function VerLugares() {
       return;
     }
     try {
-      await axios.delete(`${API}/api/comentarios/${commentId}`, {
+      await axios.delete(`${API}/comentarios/${commentId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOpinions(opinions.filter((op) => op.id !== commentId));
@@ -280,7 +280,7 @@ function VerLugares() {
     }
     try {
       await axios.post(
-        `${API}/api/comentarios/${commentId}/report`,
+        `${API}/comentarios/${commentId}/report`,
         {},
         { headers: { Authorization: `Bearer ${token}` } },
       );

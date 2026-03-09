@@ -30,7 +30,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/api/login", formData);
+      const res = await api.post("login", formData);
       const token = res.data.token; // Corregido de access_token a token
       const usuario = res.data.usuario; // Obtener el objeto usuario
       localStorage.setItem("token", token);

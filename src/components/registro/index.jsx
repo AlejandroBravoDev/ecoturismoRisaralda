@@ -94,7 +94,7 @@ function Registro() {
     }
 
     try {
-      const res = await api.post("/api/register", formData);
+      const res = await api.post("/register", formData);
 
       const token = res.data.token;
       const usuario = res.data.usuario;

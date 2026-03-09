@@ -59,7 +59,7 @@ function App() {
     const fetchTopDestinations = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(import.meta.env.VITE_API_URL + "/api/lugares");
+        const response = await axios.get(import.meta.env.VITE_API_URL + "/lugares");
         if (isMounted) {
           const procesados = response.data.map((lugar) => {
             const comentarios = lugar.comentarios || [];

@@ -15,9 +15,9 @@ function Editar() {
   const [coordenadas, setCoordenadas] = useState("");
   const endpoints = useMemo(
     () => ({
-      lugares: `/api/lugares/${id}`,
-      hospedajes: `/api/hospedajes/${id}`,
-      usuario: `/api/usuario/${id}`,
+      lugares: `lugares/${id}`,
+      hospedajes: `hospedajes/${id}`,
+      usuario: `usuario/${id}`,
     }),
     [id],
   );

@@ -17,7 +17,7 @@ export default defineConfig({
       "/api": {
         target: "http://127.0.0.1:8000",
         changeOrigin: true, // Importante para que el Host se cambie a 127.0.0.1:8000
-        rewrite: (path) => path.replace(/^\/api/, "/api"), // Mantiene la ruta /api
+        rewrite: (path) => path.replace(/^\const API = import.meta.env.VITE_API_URL;, ""), // Mantiene la ruta /api
       },
     },
   },
