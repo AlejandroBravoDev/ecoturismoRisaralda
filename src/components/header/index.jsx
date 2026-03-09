@@ -52,7 +52,7 @@ function Header() {
       }
 
       try {
-        const res = await api.get("/apperfil");
+        const res = await api.get("/perfil");
 
         const userData = res.data.usuario;
         setUser(userData);
