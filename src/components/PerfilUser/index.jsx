@@ -3,7 +3,7 @@ import styles from "./PerfilUser.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
-import placeholderFotoUsuario from "../../assets/usuarioDemo.png";
+import placeholderFotoUsuario from "../../assets/usuarioDemo.webp";
 import bannerFondo from "../../assets/img4.webp";
 import { FaHeart, FaMapMarkerAlt, FaStar, FaTrashAlt } from "react-icons/fa";
 
