@@ -12,7 +12,7 @@ import {
   Users,
 } from "lucide-react";
 import logo from "../../assets/logo.webp";
-import usuarioDemo from "../../assets/usuarioDemo.png";
+import usuarioDemo from "../../assets/usuarioDemo.webp";
 
 function Header() {
   const navigate = useNavigate();
