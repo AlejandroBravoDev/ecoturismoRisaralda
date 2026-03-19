@@ -7,7 +7,7 @@ import noImage from "../assets/noImage.webp";
 
 const AdminUsers = () => {
   const navigate = useNavigate();
-  const API_URL = import.meta.env.VITE_API_URL + "/api";
+  const API_URL = import.meta.env.VITE_API_URL;
   const [users, setUsers] = useState(() => {
     const cache = localStorage.getItem("admin_users_cache");
     return cache ? JSON.parse(cache) : [];

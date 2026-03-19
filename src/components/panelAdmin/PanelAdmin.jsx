@@ -54,7 +54,6 @@ function PanelAdmin() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center w-full">
-      <Header />
 
       <main className="w-full flex flex-col items-center flex-grow">
         <motion.div
@@ -131,8 +130,6 @@ function PanelAdmin() {
           </motion.div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
