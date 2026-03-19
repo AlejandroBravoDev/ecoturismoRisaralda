@@ -9,7 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HospedajeController;
 use App\Http\Controllers\LugaresController;
 use App\Http\Controllers\MunicipioController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\usuarioController;
 use App\Http\Controllers\favoritosController;
 use App\Http\Controllers\comentariosController;
 use App\Http\Controllers\PerfilController;
@@ -25,10 +25,10 @@ Route::get('/favoritos', [favoritosController::class, 'index']);
 Route::get('/comentarios', [comentariosController::class, 'index']);
 
 // Usuarios (sin auth para pruebas)
-Route::get('/usuarios', [UsuarioController::class, 'index']);
-Route::get('/usuarios/{id}', [UsuarioController::class, 'show']);
-Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
-Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
+Route::get('/usuarios', [usuarioController::class, 'index']);
+Route::get('/usuarios/{id}', [usuarioController::class, 'show']);
+Route::put('/usuarios/{id}', [usuarioController::class, 'update']);
+Route::delete('/usuarios/{id}', [usuarioController::class, 'destroy']);
 
 // Auth
 Route::post('/register', [AuthController::class, 'register']);

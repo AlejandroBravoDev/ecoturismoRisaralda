@@ -6,7 +6,7 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class UsuarioController extends Controller
+class usuarioController extends Controller
 {
     // Listar todos los usuarios
     public function index()
