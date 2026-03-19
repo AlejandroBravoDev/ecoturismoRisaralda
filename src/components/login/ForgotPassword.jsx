@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./Login.module.css"; // reutilizamos estilos
 
 function ForgotPassword() {
+  const API = import.meta.env.VITE_API_URL;
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,13 +15,13 @@ function ForgotPassword() {
     setMensaje("");
 
     try {
-      const res = await axios.post("forgot-password", { email });
+      const res = await axios.post(`${API}/forgot-password`, { email });
       setMensaje(res.data.message);
       setEmail("");
     } catch (err) {
       setMensaje(
         err.response?.data?.message ||
-          "Error al enviar el correo de recuperación"
+          "Error al enviar el correo de recuperación",
       );
     } finally {
       setLoading(false);
