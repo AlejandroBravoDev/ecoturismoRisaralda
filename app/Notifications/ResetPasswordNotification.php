@@ -11,12 +11,10 @@ class ResetPasswordNotification extends Notification
     use Queueable;
 
     public $token;
-    public $email;
 
-    public function __construct($token, $email)
+    public function __construct($token)
     {
         $this->token = $token;
-        $this->email = $email;
     }
 
     public function via($notifiable)
@@ -26,15 +24,13 @@ class ResetPasswordNotification extends Notification
 
     public function toMail($notifiable)
     {
-        $resetUrl = "http://localhost:5173/reset-password?token={$this->token}&email={$this->email}";
+        $resetUrl = url("/reset-password/".$this->token);
 
         return (new MailMessage)
-            ->subject('Recuperación de contraseña')
+            ->subject('Recuperar contraseña - Ecoturismo Risaralda')
             ->greeting('¡Hola!')
-            ->line('Recibimos una solicitud para restablecer tu contraseña.')
-            ->action('Restablecer contraseña', $resetUrl)
-            ->line('Este enlace expirará en 60 minutos.')
-            ->line('Si no solicitaste este cambio, ignora este correo.')
-            ->salutation('Saludos, El equipo');
+            ->line('Estás recibiendo este correo porque solicitaste un restablecimiento de contraseña para tu cuenta.')
+            ->action('Restablecer Contraseña', $resetUrl)
+            ->line('Si no fuiste tú, no requiere ninguna acción adicional.');
     }
 }
