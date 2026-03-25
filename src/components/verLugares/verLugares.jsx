@@ -7,7 +7,7 @@ import Footer from "../footer";
 import imgMeerkat from "../../assets/img4.webp";
 import imgLion from "../../assets/img6.webp";
 import imgParrot from "../../assets/img1.webp";
-
+import usuarioDemo from "../../assets/usuarioDemo.webp";
 import Mapa from "../mapa/map.jsx";
 import ScrollToTop from "../ScrollToTop.jsx";
 import Filter from "../../utils/profanity.js";
@@ -472,13 +472,33 @@ function VerLugares() {
             </div>
 
             {selectedImage && (
-              <div className={styles.imagePreview}>
-                <p>Imagen seleccionada: {selectedImage.name}</p>
-                <img
-                  src={URL.createObjectURL(selectedImage)}
-                  alt="Vista previa"
-                  className="w-50 h-50 rounded-xl"
-                />
+              <div
+                style={{
+                  marginTop: "15px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: "120px",
+                    height: "120px",
+                    borderRadius: "12px",
+                    overflow: "hidden",
+                    border: "2px solid #eee",
+                    boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+                  }}
+                >
+                  <img
+                    src={URL.createObjectURL(selectedImage)}
+                    alt="Vista previa"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
               </div>
             )}
 
@@ -531,7 +551,7 @@ function VerLugares() {
                 <div className={styles.opinionContent}>
                   <div className={styles.opinionHeader}>
                     <img
-                      src={op.user?.avatar || "https://via.placeholder.com/50"}
+                      src={op.user?.avatar || usuarioDemo}
                       alt="Avatar"
                       className={styles.userAvatar}
                     />

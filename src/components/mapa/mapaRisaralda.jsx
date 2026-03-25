@@ -3,16 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import styles from "./mapaOverlay.module.css";
 import L from "leaflet";
-import icon from "leaflet/dist/images/marker-icon.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { FaMapMarkerAlt } from "react-icons/fa";
-
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: icon,
-  iconUrl: icon,
-  shadowUrl: iconShadow,
-});
 
 const RISARALDA_CENTER = [4.815, -75.69];
 const RISARALDA_BOUNDS = [
@@ -20,15 +11,19 @@ const RISARALDA_BOUNDS = [
   [8.0, -74.0],
 ];
 
-const GreenIcon = new L.Icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
+const GreenIcon = new L.DivIcon({
+  html: `
+    <svg width="30" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z" 
+            fill="#20A217" 
+            stroke="#ffffff" 
+            stroke-width="1.5"/>
+      <circle cx="12" cy="9" r="3.5" fill="#ffffff"/>
+    </svg>`,
+  className: styles.customLeafletIcon,
+  iconSize: [30, 42],
+  iconAnchor: [15, 42],
+  popupAnchor: [0, -40],
 });
 
 const truncateText = (text, maxLength) => {
@@ -45,7 +40,8 @@ function MapController({ targetPlace, setTargetPlace }) {
         duration: 1.5,
       });
 
-      setTimeout(() => setTargetPlace(null), 1500);
+      const timer = setTimeout(() => setTargetPlace(null), 1500);
+      return () => clearTimeout(timer);
     }
   }, [targetPlace, map, setTargetPlace]);
 
@@ -80,6 +76,7 @@ function MapaRisaralda({ sitiosRisaralda, targetPlace, setTargetPlace }) {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
         {sitiosRisaralda.map((sitio) => (
           <Marker
             key={sitio.id}
@@ -99,14 +96,18 @@ function MapaRisaralda({ sitiosRisaralda, targetPlace, setTargetPlace }) {
                     Imagen no disponible
                   </div>
                 )}
+
                 <h4 className={styles.cardTitulo}>{sitio.nombre}</h4>
+
                 <p className={styles.cardDescripcion}>
                   {truncateText(sitio.info, 120)}
                 </p>
+
                 <div className={styles.cardCiudad}>
                   <FaMapMarkerAlt className={styles.iconoUbicacion} />
                   <span>{truncateText(sitio.ubicacionTexto, 25)}</span>
                 </div>
+
                 <a href={`/lugares/${sitio.id}`} className={styles.cardBoton}>
                   Ver detalles
                 </a>
