@@ -1,0 +1,82 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+use App\Models\Usuario;
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HospedajeController;
+use App\Http\Controllers\LugaresController;
+use App\Http\Controllers\MunicipioController;
+use App\Http\Controllers\usuarioController;
+use App\Http\Controllers\favoritosController;
+use App\Http\Controllers\comentariosController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\PasswordResetController;
+
+
+Route::get('/lugares', [LugaresController::class, 'index']);
+Route::get('/lugares/{id}', [LugaresController::class, 'show']);
+Route::get('/hospedajes', [HospedajeController::class, 'index']);
+Route::get('/hospedajes/{id}', [HospedajeController::class, 'show']);
+Route::get('/municipios', [MunicipioController::class, 'index']);
+Route::get('/favoritos', [favoritosController::class, 'index']);
+Route::get('/comentarios', [comentariosController::class, 'index']);
+
+// Usuarios (sin auth para pruebas)
+Route::get('/usuarios', [usuarioController::class, 'index']);
+Route::get('/usuarios/{id}', [usuarioController::class, 'show']);
+Route::put('/usuarios/{id}', [usuarioController::class, 'update']);
+Route::delete('/usuarios/{id}', [usuarioController::class, 'destroy']);
+
+// Auth
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+/*RECUPERAR CONTRASEÑ*/
+
+Route::post('/forgot-password', [PasswordResetController::class, 'forgotPassword']);
+Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']);
+
+/*RUTAS PROTEGIDAS */
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/user', function (Request $request) {
+        $user = $request->user();
+        return response()->json([
+            'id' => $user->id,
+            'nombre_completo' => $user->nombre_completo,
+            'avatar_url' => $user->avatar_url,
+        ]);
+    });
+
+    Route::get('/perfil', [PerfilController::class, 'show']);
+    Route::post('/perfil/update', [PerfilController::class, 'update']);
+
+    Route::post('/comentarios', [ComentariosController::class, 'store']);
+    Route::delete('/comentarios/{id}', [ComentariosController::class, 'destroy']);
+
+    // Favoritos
+    Route::post('/favoritos', [favoritosController::class, 'store']);
+    Route::delete('/favoritos/{id}', [favoritosController::class, 'destroy']);
+    Route::get('/favoritos/check/{id}', [favoritosController::class, 'check']);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+    // Lugares
+    Route::post('/lugares', [LugaresController::class, 'store']);
+    Route::put('/lugares/{id}', [LugaresController::class, 'update']);
+    Route::delete('/lugares/{id}', [LugaresController::class, 'destroy']);
+
+    // Hospedajes
+    Route::post('/hospedajes', [HospedajeController::class, 'store']);
+    Route::put('/hospedajes/{id}', [HospedajeController::class, 'update']);
+    Route::delete('/hospedajes/{id}', [HospedajeController::class, 'destroy']);
+
+    // Usuarios (admin)
+    Route::post('/usuario', [UsuarioController::class, 'store']);
+    Route::put('/usuario/{id}', [UsuarioController::class, 'update']);
+    Route::delete('/usuario/{id}', [UsuarioController::class, 'destroy']);
+});
