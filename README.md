@@ -149,7 +149,7 @@ VITE_API_URL=http://localhost:8000/api
 npm run dev
 ```
 
-✅ Frontend disponible en: `http://localhost:5173`
+Frontend disponible en: `http://localhost:5173`
 
 ---
 
@@ -181,7 +181,7 @@ php artisan serve             npm run dev
 
 ---
 
-## 🛠️ Comandos útiles — Backend
+## Comandos útiles — Backend
 
 ```bash
 # Limpiar caché
